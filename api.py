@@ -16,6 +16,7 @@ def main():
             'q': ''
         }
         response = requests.get(url, params=playout)
+        response.raise_for_status()
         response.encoding = 'utf-8'
         print(response.text)
 
