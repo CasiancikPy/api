@@ -9,9 +9,9 @@ from urllib.parse import urlparse
 BASE_URL = 'https://clc.li/api'
 
 
-def shorten_link(api_token, my_url):
+def shorten_link(api_token, url):
     layout = {
-        'url': my_url
+        'url': url
     }
 
     headers = {
@@ -68,9 +68,9 @@ def is_bitlink(link):
 def main():
     load_dotenv()
     API = os.getenv('API_TOKEN')
-    my_url = input('URL:')
+    url = input('URL:')
 
-    parsed_result = is_bitlink(my_url)
+    parsed_result = is_bitlink(url)
     if parsed_result is True:
         print('Это короткая ссылка')
         try:
@@ -81,7 +81,7 @@ def main():
     else:
         print('Это не короткая ссылка')
         try:
-            short_link = shorten_link(API, my_url)
+            short_link = shorten_link(API, url)
             print('Короткая ссылка:', short_link['shorturl'])
             link = short_link['shorturl']
             if 'error' in short_link:
