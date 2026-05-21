@@ -1,8 +1,10 @@
 import requests
 import os
 
+
 from dotenv import load_dotenv
 from urllib.parse import urlparse
+
 
 BASE_URL = 'https://clc.li/api'
 
@@ -22,6 +24,7 @@ def shorten_link(api_token, my_url):
         headers=headers,
         json=layout
     )
+
     response.raise_for_status()
     return response.json()
 
